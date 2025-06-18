@@ -3,6 +3,9 @@ The problem I am trying to solve is poaching in animal habitats which are so unb
 I used a dataset of 2000 audio files of environmental sounds that could occur in those such habitats, the sounds range from Animal sounds, Natural sounds, Human sounds, Interior sounds, Exterior sounds. But I have refined the classes into 3 I need namely Human activity, Animal Sounds, and Ambient Sounds.
 
 Dataset Link: https://github.com/karolpiczak/ESC-50
+
+Video Presentation Link: https://youtu.be/o1y10BRVG2M
+
 # Summary Table
 
 | Model  | Optimizer | Regularization | Early Stopping | Dropout | Learning Rate | Num of Layers       | Accuracy | Precision | Recall | F1-Score | Best Epoch | Training Loss | Validation Loss |
