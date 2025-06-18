@@ -1,3 +1,8 @@
+# Brief Description:
+The problem I am trying to solve is poaching in animal habitats which are so unbelievably large that they become almost impossible to fully monitor for the guards there, making it easy for poachers to attack animals without being scared of being caught. To solve this I plan on building an alerting system that listens to audio, makes a prediction using my models and then sends an alert to wildlife rangers when human activity is heard, so they can get there in time to stop them or arrest them. 
+I used a dataset of 2000 audio files of environmental sounds that could occur in those such habitats, the sounds range from Animal sounds, Natural sounds, Human sounds, Interior sounds, Exterior sounds. But I have refined the classes into 3 I need namely Human activity, Animal Sounds, and Ambient Sounds.
+
+Dataset Link: https://github.com/karolpiczak/ESC-50
 # Summary Table
 
 | Model  | Optimizer | Regularization | Early Stopping | Dropout | Learning Rate | Num of Layers       | Accuracy | Precision | Recall | F1-Score | Best Epoch | Training Loss | Validation Loss |
@@ -33,4 +38,34 @@ My final results where surprisingly promising with a decent accuracy at 0.6905. 
 ### Which combination worked better?
 - Based on what we discussed I believed model 3 (Adam, learning_rate=0.001, dropout=0.2, early_stopping=True(patience=10), regularization=L2 (0.01)) performed the best having the least difference between losses which shows it didn't overfit while still having relatively high accuracy (0.7024) and good error metrics ().
 ### Which implementation worked better: ML Algorithm or Neural Network?
-Based on the results, the Neural Network model (Model 3) worked better overall compared to the Random Forest (Model 5). Although Model 1 achieved the highest accuracy, it was highly overfitted, which made it unreliable for generalization. Model 3 showed the best balance between accuracy, precision, and recall, with minimal overfitting, making it more robust for real-world use, particularly for detecting human activity. While the Random Forest model performed surprisingly decently, its high training accuracy and overfitting issues indicated that it may struggle to generalize to unseen data, making Model 3 the most reliable choice for practical deployment. And even without the overfitting the Random Forest was still nowhere near the best in terms of any metrics.
+- Based on the results, the Neural Network model (Model 3) worked better overall compared to the Random Forest (Model 5). Although Model 1 achieved the highest accuracy, it was highly overfitted, which made it unreliable for generalization. Model 3 showed the best balance between accuracy, precision, and recall, with minimal overfitting, making it more robust for real-world use, particularly for detecting human activity. While the Random Forest model performed surprisingly decently, its high training accuracy and overfitting issues indicated that it may struggle to generalize to unseen data, making Model 3 the most reliable choice for practical deployment. And even without the overfitting, the Random Forest was still nowhere near the best in terms of any metrics.
+
+##  Running the Notebook
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/amuhirwa/PoachPatrol.git
+cd PoachPatrol
+```
+### 2. Open the Notebook
+```bash
+  jupyter notebook notebook.ipynb
+```
+
+### 3. Run All Cells in Sequence
+
+The notebook is modularized, with each model instance (Instance 1 to Instance 5) in its own section.
+
+It includes audio to mel spectogram conversion, data preprocessing, model training, and evaluation.
+
+Make sure to download the dataset and bring the audio directory to the project root directory.
+
+
+### 4. Loading the best saved model
+
+Go to the before last cell and edit the model_path and also choose the item to predict for in the make_predictions function call.
+```python
+model_path = "./saved_model/model_1_unoptimized.keras"
+make_predictions(model_path, np.expand_dims(X_test[1], axis=0), return_labels=True)
+```
